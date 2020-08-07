@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import mainBcg from '../images/mainBcg.jpeg';
-import {Link} from 'react-router-dom';
-export default function Hero({title,max,children,img}) {
+
+export default function Hero({title,max,children,img,tall}) {
     return (
-        <HeroWalper img={img}>
+        <HeroWalper tall={tall} img={img}>
      
         <div>
         <h1 className='items'>{title}</h1>
@@ -21,7 +21,7 @@ text-align: center;
 display: flex;
 align-items: center;
 justify-content: center;
-min-height:100vh;
+min-height:${props=>props.tall ? "100vh":"60vh"};
 background:url(${props=>props.img}) center/cover no-repeat;
 
 .container{

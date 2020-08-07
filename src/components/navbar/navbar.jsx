@@ -3,7 +3,9 @@ import {FaList,FaShoppingCart} from "react-icons/fa";
 import logo from "../../images/logo.svg";
 import './navbar.css'
 import {ProductConsumer} from '../../context/context';
-import styled from 'styled-components'
+import styled from 'styled-components';
+import {Link} from 'react-router-dom';
+
 export default class Navbar extends Component {
     render() {
         return (
@@ -11,12 +13,13 @@ export default class Navbar extends Component {
 
             <ProductConsumer>
 {value=>{
-    const {cartitem,handelsidebar,sidebaropen} = value;
+    const {cartitem,handelsidebar} = value;
     return(
         <Botcap>
     <div className="nav-center">
         <FaList className='nav-icon' onClick={e=>handelsidebar(e)} />
-        <img src={logo} alt="logo" />
+        <Link to='home'><img src={logo} alt="logo" /></Link>
+        
         <div className='nav-cart'>
         <FaShoppingCart className='charyo'/> 
         <div className='cartitem'>{cartitem}</div>
@@ -40,6 +43,7 @@ width: 100%;
 padding: 1rem 1.5rem;
 background: rgb(243, 243, 243);
 border-bottom: 2px solid rgb(98, 221, 243);
+z-index:1;
 .nav-center{
     display:flex; 
     align-items:center;

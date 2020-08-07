@@ -11,7 +11,7 @@ export default class HomePage extends Component {
     render() {
         return (
            
-            <Hero title="awesome gadgets" max="true">
+            <Hero tall title="awesome gadgets" max="true">
                 <Link to="/products" className="main-link" style={{ margin: "2rem" }}>
           our products
         </Link>

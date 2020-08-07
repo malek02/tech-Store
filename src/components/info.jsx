@@ -1,30 +1,42 @@
 import React from 'react'
 import Title from './Title';
-
+import aboutBcg from '../images/aboutBcg.jpeg'
 export default function Info() {
     return (
-        <div>
-          <Title Titele="About Us" center></Title> 
-          <div>
-          <p>
-          lorem ipsum 	Lors de la reprise, 
-          je réintégrerais ceux qui ont eu un 
-          arrêt de travail et qui ont gardé une 
-          bonne relat
-          ion professionnelle et humaine avec 
-          l’entre
-          qui sont restés et ceux qui vont revenir et je 
-           souhaite q’
-           ils font de mêddddddddddddddddddddddddddddddme. De ma part je fais un grand effort pour vous tous,  
-           humain, j’ai besoin de motidvation : et ma motivation c’est votre reconnaissance et implication dans 
-           la reprise
-            de SGAT. 
-          En attenda
-          nt cela, je demande à ceux qui n’ont pas de la charge de 
-          travail, 
-          de préparer REX, innovation, polyvalence, gestion de projets etc…
-</p>
-</div>
+        
+          <section className="py-5">
+      <div className="container">
+        <div className="row">
+          <div className="col-10 mx-auto col-md-6 my-3">
+            <img
+              src={aboutBcg}
+              className="img-fluid img-thumbnail"
+              alt="about company"
+              style={{ background: "var(--darkGrey)" }}
+            />
+          </div>
+          <div className="col-10 mx-auto col-md-6 my-3">
+            <Title Titele="about us" />
+            <p className="text-lead text-muted my-3">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil
+              illo obcaecati non asperiores repellendus alias, nostrum aliquid
+              ad eaque ratione!
+            </p>
+            <p className="text-lead text-muted my-3">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil
+              illo obcaecati non asperiores repellendus alias, nostrum aliquid
+              ad eaque ratione!
+            </p>
+            <button
+              className="main-link"
+              type="button"
+              style={{ marginTop: "2rem" }}
+            >
+              more info
+            </button>
+          </div>
         </div>
-    )
+      </div>
+    </section>
+  );
 }

@@ -1,9 +1,15 @@
-import React from 'react'
+import React from 'react';
+import { FaXbox,FaTwitterSquare,FaLinkedin } from "react-icons/fa";
 
 export default function Footer() {
     return (
-        <div>
-          helllo from footer  
+      <div style={{marginTop:'0.5rem', display:'flex', justifyContent:'space-between',
+      }}>
+        <p style ={{color:'rgb(197, 197, 197)'}}>Copyright ® Officiel © 2020 Malek Mechi</p>
+
+        <FaXbox style ={{ fontSize:'25px', color:'rgb(197, 197, 197)'}} />
+        <FaTwitterSquare style ={{ fontSize:'25px',color:'rgb(197, 197, 197)'}} />
+        <FaLinkedin style ={{fontSize:'25px',color:'rgb(197, 197, 197)'}} />
         </div>
     )
 }

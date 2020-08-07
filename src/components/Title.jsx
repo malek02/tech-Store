@@ -23,7 +23,7 @@ text-align:${props=>(props.center? "center": "left")};
     height : 0.25rem;
     width:7rem;
     background:rgb(98, 221, 243);
-    margin:auto auto;
+    margin: ${props => (props.center ? "0 auto" : "0")};
 }
 
 
