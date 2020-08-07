@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import Hero from '../components/Hero';
+import {Link} from 'react-router-dom';
+
+
 
 
 
@@ -6,11 +10,16 @@ import React, { Component } from 'react';
 export default class HomePage extends Component {
     render() {
         return (
-            <div>
+           
+            <Hero title="awesome gadgets" max="true">
+                <Link to="/products" className="main-link" style={{ margin: "2rem" }}>
+          our products
+        </Link>
+            </Hero>
             
-                hello from Home
-                {console.log("11111",this.props)}
-            </div>
+            
+                
+            
         )
     }
 }

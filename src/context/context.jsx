@@ -8,7 +8,7 @@ class ProductProvieder extends Component {
     state={
         sidebaropen:false,
         cartopen:false,
-        cartitem:0
+        cartitem:11
     }
 hadelSidebar=(e)=>{
     this.setState({sidebaropen:!this.state.sidebaropen})
