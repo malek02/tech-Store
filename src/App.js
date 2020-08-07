@@ -23,7 +23,7 @@ export default class App extends Component {
 
       <Route excat path="/singelpage" component={SingleProduct}/>
       <Route excat  path="/contact" component={ContactPage}/>
-      <Route excat path="/home" component={HomePage}/>
+      <Route excat path="/" component={HomePage}/>
       <Route excat path="/About" component={AboutPgae}/>
       <Route component={Defeault}/>
      </Switch>
