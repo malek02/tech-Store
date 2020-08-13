@@ -21,7 +21,7 @@ text-align: center;
 display: flex;
 align-items: center;
 justify-content: center;
-min-height:${props=>props.tall ? "100vh":"60vh"};
+min-height:${props=>props.tall ? "90vh":"60vh"};
 background:url(${props=>props.img}) center/cover no-repeat;
 
 .container{

@@ -6,7 +6,7 @@ export  const LinkData=[
     {
         id:1,
         name:'Home',
-        path:'/Home',
+        path:'/',
         icon:<FaHospitalSymbol/>
     },
     {
@@ -18,7 +18,7 @@ export  const LinkData=[
     {
         id:3,
         name:'products',
-        path:'/products',
+        path:'/Product',
         icon:<FaLayerGroup/>
     },
     {

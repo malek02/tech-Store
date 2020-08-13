@@ -8,7 +8,7 @@ export default function Defeault() {
     return (
         
         <Hero title="404 page not found" img={defaultBcg} className='banner'>
-       <Link to="/home" className="main-link" style={{ margin: "2rem" }}>
+       <Link to="/" className="main-link" style={{ margin: "2rem" }}>
           return to home page
         </Link>
       

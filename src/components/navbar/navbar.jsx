@@ -13,16 +13,16 @@ export default class Navbar extends Component {
 
             <ProductConsumer>
 {value=>{
-    const {cartitem,handelsidebar} = value;
+    const {reducer,handelsidebar,handelSidecard} = value;
     return(
         <Botcap>
     <div className="nav-center">
         <FaList className='nav-icon' onClick={e=>handelsidebar(e)} />
-        <Link to='home'><img src={logo} alt="logo" /></Link>
+        <Link to='/'><img src={logo} alt="logo" /></Link>
         
         <div className='nav-cart'>
-        <FaShoppingCart className='charyo'/> 
-        <div className='cartitem'>{cartitem}</div>
+        <FaShoppingCart className='charyo' onClick={e=>handelSidecard(e)} /> 
+        <div className='cartitem'>{reducer}</div>
         </div>      
     </div>
     </Botcap>  
@@ -61,6 +61,7 @@ cursor: pointer;
 }
 .charyo{
     font-size: 1.4rem;
+    cursor: pointer;
 }
 .cartitem{
     position:absolute;
