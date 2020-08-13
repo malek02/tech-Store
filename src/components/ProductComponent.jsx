@@ -11,7 +11,7 @@ export default class ProductComponent extends Component {
 
                 {value => {
 
-                    const { ProductList,addToCart } = value;
+                    const {deletItem, ProductList,addToCart } = value;
                     return (
                         <ProductWarper >
                         <section className="py-5">
@@ -31,13 +31,13 @@ export default class ProductComponent extends Component {
                                                     <div className="product-icons">
                                                         <Link
                                                             to={`/products/${item.id}`}
-                                                            onClic
+                                                            onClick={e=>deletItem(e)}
                                                         >
                                                             <FaSearch className="icon" />
                                                         </Link>
                                                         <FaCartPlus
                                                             className="icon"
-                                                            onClick={e=>addToCart(item.id)}
+                                                            onClick={()=>addToCart(item.id)}
 
                                                         />
                                                     </div>

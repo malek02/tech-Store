@@ -13,7 +13,7 @@ export default class Navbar extends Component {
 
             <ProductConsumer>
 {value=>{
-    const {reducer,handelsidebar,handelSidecard} = value;
+    const {cartitem,handelsidebar,handelSidecard} = value;
     return(
         <Botcap>
     <div className="nav-center">
@@ -22,7 +22,7 @@ export default class Navbar extends Component {
         
         <div className='nav-cart'>
         <FaShoppingCart className='charyo' onClick={e=>handelSidecard(e)} /> 
-        <div className='cartitem'>{reducer}</div>
+        <div className='cartitem'>{cartitem}</div>
         </div>      
     </div>
     </Botcap>  
