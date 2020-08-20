@@ -18,7 +18,7 @@ export default class Navbar extends Component {
         <Botcap>
     <div className="nav-center">
         <FaList className='nav-icon' onClick={e=>handelsidebar(e)} />
-        <Link to='/'><img src={logo} alt="logo" /></Link>
+        <Link to='/Home'><img src={logo} alt="logo" /></Link>
         
         <div className='nav-cart'>
         <FaShoppingCart className='charyo' onClick={e=>handelSidecard(e)} /> 

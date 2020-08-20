@@ -14,12 +14,17 @@ class ProductProvieder extends Component {
         featuredList: [],
         ProductList: [],
         Cart: [],
-        reducer: null
+       
+        email: '',
+        password: '',
+        login: false,
+        emailcart: [], dataeamil: [],
+        Total: 0
     }
     componentDidMount() {
         this.productLsit(items);
 
-        console.log('eeee', this.state.productfina);
+
     }
     handelSidecard = () => {
         this.setState({ cartopen: !this.state.cartopen })
@@ -34,7 +39,7 @@ class ProductProvieder extends Component {
             let list = { id, ...item.fields, image }
             return list;
         })
-        console.log('dddd', productfinal)
+
         const featuredList = productfinal.filter(pro => (pro.featured === true));
 
         const ProductList = productfinal.filter(item => (item.featured === false));
@@ -42,51 +47,48 @@ class ProductProvieder extends Component {
             productfina: productfinal,
             featuredList: featuredList,
             ProductList, Cart: this.getStoreg(),
-            cartitem: this.storeGet()
+            cartitem: this.storeGet(),
+
         })
 
 
     }
     deletItem = (e) => {
-        localStorage.removeItem('cart')
+        localStorage.removeItem('cart');
+      
+        this.setState({ Cart: [], Total: 0 })
     }
 
     addToCart = (e) => {
 
         let tempCart = [...this.state.Cart];
-
-
-        console.log("1", tempCart)
         let tempProducts = [...this.state.productfina];
-        console.log("2", tempProducts)
         let tempItem = tempCart.find(item => item.id === e);
-        console.log("3", tempItem)
+
         if (!tempItem) {
             tempItem = tempProducts.find(item => item.id === e);
-            console.log("4", tempItem)
+
             let Total = tempItem.price;
-            console.log("5", Total)
+
             let tempitem = { ...tempItem, count: 1, Total };
-            console.log("6", tempitem)
+
             tempCart = [...tempCart, tempitem];
-            console.log("7", tempCart)
+
         }
         else {
             tempItem.count++;
-            tempItem.Total = tempItem.Total * tempItem.count;
-
-
+            tempItem.Total = tempItem.price * tempItem.count;
         }
         this.setState({
             Cart: tempCart,
-            cartitem: this.gettotal()
+            
+        }, () => {
+            this.addtotal();
+            this.asyncStore();
+            this.OpenCart();
         })
-
-
-
-        this.asyncStore(e);
-        this.OpenCart(e);
     }
+
     hadelSidebar = (e) => {
         this.setState({ sidebaropen: !this.state.sidebaropen })
     }
@@ -95,12 +97,23 @@ class ProductProvieder extends Component {
         localStorage.setItem("store", JSON.stringify(this.state.cartitem));
 
     }
-    gettotal = () => {
-        let cartitem = 0;
 
-        this.state.Cart.forEach(item => { cartitem += item.count }
-        )
-        return cartitem
+    getTotal = () => {
+
+        let tempTotal=0;
+        let cartdata=0;
+        this.state.Cart.forEach(item => { tempTotal += item.Total;
+            cartdata += item.count })
+        
+        return {tempTotal, cartdata}
+    }
+
+    addtotal = () => {
+        let Total = this.getTotal();
+
+       this.setState({Total:Total.tempTotal,
+        cartitem:Total.cartdata})
+        
     }
     getStoreg = () => {
         let cartdata;
@@ -127,9 +140,73 @@ class ProductProvieder extends Component {
         }
         return storedata;
     }
+    eamilGet = () => {
+        let eamilstor;
+        if (localStorage.getItem('emaildata')) {
+            eamilstor = JSON.parse(localStorage.getItem('emaildata'))
+        }
+        else {
+
+            eamilstor = null;
+        }
+        return eamilstor;
+    }
+    handelSubmit = (e) => {
+        e.preventDefault()
+
+        let tempemail = [...this.state.dataeamil];
+        console.log('1', tempemail);
+        let tempItemm = tempemail.find(item => item === this.state.email);
+        console.log('2', tempItemm);
+
+        if (!tempItemm) {
+
+            tempemail = [...tempemail, this.state.email];
+
+            this.setState({ dataeamil: tempemail })
+
+            console.log('3', tempemail)
+            localStorage.setItem("emaildata", JSON.stringify(tempemail))
+        }
+        else {
+            this.setState({ login: true })
+        }
+
+        this.setState({
+            dataeamil: this.eamilGet()
+        })
+
+
+    }
+    handelchange1 = (e) => {
+
+
+        this.setState({ email: e.target.value });
+
+    }
+
+    handelchange2 = (e) => {
+        this.setState({ password: e.target.value });
+
+    }
+
+    deletCart = (e) => {
+        
+        let tempItem = [...this.state.Cart];
+
+        tempItem = tempItem.filter(item => item.id !== e);
+        this.setState({ Cart: tempItem},
+            () => {
+                this.addtotal();
+                this.asyncStore();
+               
+                
+            })
+    }
+
     render() {
         console.log("****", this.state.Cart);
-        console.log("reduc", this.state.cartitem);
+        console.log("$", this.state.Total);
 
         return (
             <ProductContext.Provider
@@ -138,7 +215,12 @@ class ProductProvieder extends Component {
                     handelsidebar: this.hadelSidebar,
                     handelSidecard: this.handelSidecard,
                     addToCart: this.addToCart,
-                    deletItem: this.deletItem
+                    deletItem: this.deletItem,
+                    handelSubmit: this.handelSubmit,
+                    handelchange2: this.handelchange2,
+                    handelchange1: this.handelchange1,
+                    deletCart: this.deletCart
+
                 }}>
                 {this.props.children}
             </ProductContext.Provider>)

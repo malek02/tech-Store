@@ -23,7 +23,7 @@ export default class Featured extends Component {
                {featuredList.map(item=>{
                    return(
                     
-                     <div  className="col-10 mx-auto col-sm-8 col-md-6  col-lg-4 my-3">
+                     <div key={item.id} className="col-10 mx-auto col-sm-8 col-md-6  col-lg-4 my-3">
     <div className="card"  key={item.id}>
   <div className="img-container">
   <img src={item.image} alt="product"    className="card-img-top p-5"
@@ -32,13 +32,13 @@ export default class Featured extends Component {
               <div className="product-icons">
                   <Link
                     to={`/products/${item.id}`}
-                    onClic
+                    
                   >
                     <FaSearch className="icon" />
                   </Link>
                   <FaCartPlus
                     className="icon"
-                    onClick={(e) => addToCart(e)}
+                    onClick={() => addToCart(item.id)}
                    
                   />
                 </div>
