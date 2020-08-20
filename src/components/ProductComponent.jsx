@@ -11,7 +11,7 @@ export default class ProductComponent extends Component {
 
                 {value => {
 
-                    const { ProductList,addToCart } = value;
+                    const {setSingleProduct, ProductList,addToCart } = value;
                     return (
                         <ProductWarper >
                         <section className="py-5">
@@ -19,7 +19,7 @@ export default class ProductComponent extends Component {
                                 <div className="row">
 
 
-                                    {ProductList.map(item => {
+                                    {ProductList.map(item => {console.log('product',item)
                                         return (
 
                                             <div className="col-10 mx-auto col-sm-8 col-md-6  col-lg-4 my-3">
@@ -31,7 +31,7 @@ export default class ProductComponent extends Component {
                                                     <div className="product-icons">
                                                         <Link
                                                             to={`/products/${item.id}`}
-                                                           
+                                                            onClick={()=>setSingleProduct(item.id)}
                                                         >
                                                             <FaSearch className="icon" />
                                                         </Link>

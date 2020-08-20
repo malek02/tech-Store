@@ -34,7 +34,7 @@ export default class App extends Component {
         <Redirect to='/Home' />) : (<SigninPage />)} 
      />
       <Route  path="/Home" exact component={HomePage}/>
-      <Route  path="/singelpage" exact component={SingleProduct}/>
+      <Route  path="/products/:id" exact component={SingleProduct}/>
       <Route   path="/contact"  exact component={ContactPage}/>
       <Route   path="/Product"  exact component={ProductPage}/>
       <Route  path="/About" exact component={AboutPgae}/>

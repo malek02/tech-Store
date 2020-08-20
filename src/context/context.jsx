@@ -14,7 +14,7 @@ class ProductProvieder extends Component {
         featuredList: [],
         ProductList: [],
         Cart: [],
-       
+        singleProduct:{},
         email: '',
         password: '',
         login: false,
@@ -48,15 +48,31 @@ class ProductProvieder extends Component {
             featuredList: featuredList,
             ProductList, Cart: this.getStoreg(),
             cartitem: this.storeGet(),
-
+            singleProduct: this.getStorageProduct()
         })
 
 
     }
+    setSingleProduct = id => {
+        let product = this.state.ProductList.find(item => item.id === id);
+
+        localStorage.setItem("singleProduct", JSON.stringify(product));
+        this.setState({
+          singleProduct: {...product}
+         
+        });
+        console.log('single',this.state.singleProduct)
+      };
+      getStorageProduct = () => {
+        return localStorage.getItem("singleProduct")
+          ? JSON.parse(localStorage.getItem("singleProduct"))
+          : {};
+      };
     deletItem = (e) => {
         localStorage.removeItem('cart');
+        localStorage.removeItem('store');
       
-        this.setState({ Cart: [], Total: 0 })
+        this.setState({ Cart: [], Total: 0,cartitem:0 },()=>{this.storeGet()})
     }
 
     addToCart = (e) => {
@@ -157,7 +173,7 @@ class ProductProvieder extends Component {
         let tempemail = [...this.state.dataeamil];
         console.log('1', tempemail);
         let tempItemm = tempemail.find(item => item === this.state.email);
-        console.log('2', tempItemm);
+     
 
         if (!tempItemm) {
 
@@ -198,9 +214,8 @@ class ProductProvieder extends Component {
         this.setState({ Cart: tempItem},
             () => {
                 this.addtotal();
-                this.asyncStore();
-               
-                
+                this.asyncStore(); 
+                 
             })
     }
 
@@ -219,8 +234,8 @@ class ProductProvieder extends Component {
                     handelSubmit: this.handelSubmit,
                     handelchange2: this.handelchange2,
                     handelchange1: this.handelchange1,
-                    deletCart: this.deletCart
-
+                    deletCart: this.deletCart,
+                    setSingleProduct: this.setSingleProduct
                 }}>
                 {this.props.children}
             </ProductContext.Provider>)
